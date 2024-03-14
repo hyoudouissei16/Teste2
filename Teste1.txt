@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biografia e Currículo</title>
+<script>
+// Simulação de dados do backend
+const usuarios = [];
+
+function mostrarUsuarios() {
+  const secaoUsuarios = document.getElementById('usuarios');
+  secaoUsuarios.innerHTML = ''; // Limpa a seção antes de adicionar novos usuários
+
+  usuarios.forEach(usuario => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <h3>${usuario.nome}</h3>
+      <p>${usuario.bio}</p>
+      <a href="${usuario.resumeLink}" target="_blank">Ver Currículo</a>
+    `;
+    secaoUsuarios.appendChild(div);
+  });
+}
+
+// Chama a função ao carregar a página
+window.onload = mostrarUsuarios;
+</script>
+</head>
+<body>
+<header>
+  <h1>Bem-vindo ao Meu Site de Biografia e Currículo</h1>
+  <p>Adicione sua biografia e currículo aqui para compartilhar com o mundo.</p>
+</header>
+<section>
+  <h2>Biografia</h2>
+  <form action="/submit-biography" method="post">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="bio">Biografia:</label>
+    <textarea id="bio" name="bio" rows="5" required></textarea>
+    <button type="submit">Enviar Biografia</button>
+  </form>
+</section>
+<section>
+  <h2>Currículo</h2>
+  <form action="/submit-resume" method="post">
+    <label for="resume">Carregar Currículo:</label>
+    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+    <button type="submit">Enviar Currículo</button>
+  </form>
+</section>
+<section id="usuarios">
+  <h2>Usuários Cadastrados</h2>
+  <!-- Os usuários serão exibidos aqui -->
+</section>
+<footer>
+  <p>© 2024 Meu Site de Biografia e Currículo</p>
+</footer>
+</body>
+</html>
